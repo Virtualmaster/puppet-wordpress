@@ -111,7 +111,7 @@ class wordpress::app {
         command      => "/bin/sh -c \'for themeindex in `ls \
                         ${app_directory}/setup_files/themes/*.zip`; \
                         do unzip -o \
-                        $themeindex -d \
+                        \$themeindex -d \
                         ${app_directory}/wp-content/themes/; done\'",
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'],
         refreshonly  => true,
@@ -121,7 +121,7 @@ class wordpress::app {
         command      => "/bin/sh -c \'for pluginindex in `ls \
                         ${app_directory}/setup_files/plugins/*.zip`; \
                         do unzip -o \
-                        $pluginindex -d \
+                        \$pluginindex -d \
                         ${app_directory}/wp-content/plugins/; done\'",
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'],
         refreshonly  => true,
