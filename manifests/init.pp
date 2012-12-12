@@ -16,9 +16,9 @@ class wordpress(
                 $wordpress_db_name='wordpress',
                 $wordpress_db_user='wordpress',
                 $wordpress_db_password='password',
-                $wordpress_db_server='localhost'
-                $wordpress_app_directory='/opt/wordpress'
-                $wordpress_app_server_name='blog.druidly.com'
+                $wordpress_db_server='localhost',
+                $wordpress_app_directory='/opt/wordpress',
+                $wordpress_app_server_name='blog.druidly.com',
                 $wordpress_app_server_alias='blog'
                 )
 {
