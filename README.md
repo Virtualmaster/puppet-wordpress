@@ -2,7 +2,7 @@
 
 wordpress::db IS NOT USED (is commented in init.pp)
 
-What to do to use with remote mysql:
+What to do to use with remote mysql (and bind on 0.0.0.0):
 
         mysql> CREATE DATABASE wordpress;
         mysql> GRANT ALL ON wordpress.* to 'wordpress_db_name'@'wordpress_db_server' identified by 'wordpress_db_password';
