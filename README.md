@@ -1,3 +1,17 @@
+### My comments:
+
+wordpress::db IS NOT USED (is commented in init.pp)
+
+What to do to use with remote mysql:
+
+        mysql> CREATE DATABASE wordpress;
+        mysql> GRANT ALL ON wordpress.* to 'wordpress_db_name'@'wordpress_db_server' identified by 'wordpress_db_password';
+
+
+
+
+### Original readme by jonhadfield:
+
 This will set up an installation of wordpress on Debian and Redhat style distributions.
 
 Installation includes software and configuration for mysql, apache httpd and php module.
@@ -5,8 +19,6 @@ Installation includes software and configuration for mysql, apache httpd and php
 __Wordpress version: 3.5__
 
 __Additional software__
-
-__wordpress:db IS NOT USED (is commented in init.pp)__
 
 _Themes_
 * Graphene 1.8
