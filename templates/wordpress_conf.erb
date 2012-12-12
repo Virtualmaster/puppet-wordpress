@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+  	DocumentRoot "<%= @app_directory =%>"
+    ServerName <%= @app_server_name =%>
+    Redirect /blog http://<%= @app_server_name =%>
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride FileInfo
+	</Directory>
+</VirtualHost>
+
