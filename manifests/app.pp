@@ -122,7 +122,7 @@ class wordpress::app {
                         ${app_directory}/setup_files/plugins/*.zip`; \
                         do unzip -o \
                         $pluginindex -d \
-                        ${app_directory}/wp-content/plugins/; done\'',
+                        ${app_directory}/wp-content/plugins/; done\'",
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'],
         refreshonly  => true,
         require      => Package['unzip'],
