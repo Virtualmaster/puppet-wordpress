@@ -1,12 +1,18 @@
 ### My comments:
 
-wordpress::db IS NOT USED (is commented in init.pp)
+Ready to use with foreman
 
-What to do to use with remote mysql (and bind on 0.0.0.0):
+DONT FORGET PARAMETRS!!!
 
-        mysql> CREATE DATABASE wordpress;
-        mysql> GRANT ALL ON wordpress.* to 'wordpress_db_name'@'wordpress_db_server' identified by 'wordpress_db_password';
+application server
 
+        * wordpress_db_password (well as the database server)
+        * wordpress_db_server (ip address or domain name of database server)
+
+database server
+
+        * wordpress_db_password (as well as the application server)
+        * wordpress_app_ip (ip address of application server)
 
 
 
