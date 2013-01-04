@@ -1,1 +1,1 @@
-CREATE DATABASE <%= @wordpress::db_name %>;
+CREATE DATABASE <%= scope.lookupvar('wordpress::db_name') %>;
