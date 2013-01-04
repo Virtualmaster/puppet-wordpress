@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-import '*.pp'
+#import '*.pp'
 class wordpress(
                 $wordpress_db_name='wordpress',
                 $wordpress_db_user='wordpress',
