@@ -31,10 +31,15 @@ class wordpress::db {
     require     => Package[ $mysqlserver, $mysqlclient ],
   }
 
+  file { [ '/opt/wordpress', '/opt/wordpress/setup_files' ]:
+    ensure => directory,
+  }
+
   file { 'wordpress_sql_script':
     ensure   => file,
     path     => '/opt/wordpress/setup_files/create_wordpress_db.sql',
-    content  => template('wordpress/create_wordpress_db.erb');
+    content  => template('wordpress/create_wordpress_db.erb'),
+    require  => File[['/opt/wordpress', '/opt/wordpress/setup_files']];
   }
 
   exec {
