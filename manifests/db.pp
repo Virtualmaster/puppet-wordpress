@@ -57,11 +57,11 @@ class wordpress::db {
       path         => '/usr/bin:/usr/sbin:/bin',
       command      => "mysql -uroot -e \"grant all privileges on\
                       ${wordpress::db_name}.* to\
-                      '${wordpress::db_user}'@'localhost'\
+                      '${wordpress::db_user}'@'${wordpress::app_ip}'\
                       identified by '${wordpress::db_password}'\"",
       unless       => "mysql -u${wordpress::db_user}\
                       -p${wordpress::db_password}\
-                      -D${wordpress::db_name} -hlocalhost",
+                      -D${wordpress::db_name} -h${wordpress::app_ip}",
       refreshonly  => true;
   }
 }
