@@ -26,8 +26,7 @@ class wordpress(
   $db_user = $wordpress_db_user
   $db_password = $wordpress_db_password
   $db_server = $wordpress_db_server
-# $app_directory = $wordpress_app_directory
-  $app_directory = '/opt/wordpress'
+  $app_directory = $wordpress_app_directory
   $app_server_name = $wordpress_app_server_name
   $app_server_alias = $wordpress_app_server_alias
 

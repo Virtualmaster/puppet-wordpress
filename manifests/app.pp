@@ -46,11 +46,11 @@ class wordpress::app {
   file {
     'wordpress_application_dir':
       ensure  =>  directory,
-      path    =>  "${app_directory}",
+      path    =>  "${wordpress::app_directory}",
       before  =>  File['wordpress_setup_files_dir'];
     'wordpress_setup_files_dir':
       ensure  =>  directory,
-      path    =>  "${app_directory}/setup_files",
+      path    =>  "${wordpress::app_directory}/setup_files",
       before  =>  File[
                       'wordpress_php_configuration',
                       'wordpress_themes',
@@ -60,22 +60,22 @@ class wordpress::app {
                       ];
     'wordpress_installer':
       ensure  =>  file,
-      path    =>  "/${app_directory}/setup_files/${wordpress_archive}",
+      path    =>  "/${wordpress::app_directory}/setup_files/${wordpress_archive}",
       notify  =>  Exec['wordpress_extract_installer'],
       source  =>  "puppet:///modules/wordpress/${wordpress_archive}";
     'wordpress_php_configuration':
       ensure     =>  file,
-      path       =>  "${app_directory}/wp-config.php",
+      path       =>  "${wordpress::app_directory}/wp-config.php",
       content    =>  template('wordpress/wp-config.erb'),
       subscribe  =>  Exec['wordpress_extract_installer'];
     'wordpress_htaccess_configuration':
       ensure     =>  file,
-      path       =>  "${app_directory}/.htaccess",
+      path       =>  "${wordpress::app_directory}/.htaccess",
       source     =>  'puppet:///modules/wordpress/.htaccess',
       subscribe  =>  Exec['wordpress_extract_installer'];
     'wordpress_themes':
       ensure     => directory,
-      path       => "${app_directory}/setup_files/themes",
+      path       => "${wordpress::app_directory}/setup_files/themes",
       source     => 'puppet:///modules/wordpress/themes/',
       recurse    => true,
       purge      => true,
@@ -84,7 +84,7 @@ class wordpress::app {
       subscribe  => Exec['wordpress_extract_installer'];
     'wordpress_plugins':
       ensure     => directory,
-      path       => "${app_directory}/setup_files/plugins",
+      path       => "${wordpress::app_directory}/setup_files/plugins",
       source     => 'puppet:///modules/wordpress/plugins/',
       recurse    => true,
       purge      => true,
@@ -102,27 +102,27 @@ class wordpress::app {
       exec {
       'wordpress_extract_installer':
         command      => "unzip -o\
-                        ${app_directory}/setup_files/${wordpress_archive}\
+                        ${wordpress::app_directory}/setup_files/${wordpress_archive}\
                         -d /opt/",
         refreshonly  => true,
         require      => Package['unzip'],
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'];
       'wordpress_extract_themes':
         command      => "/bin/sh -c \'for themeindex in `ls \
-                        ${app_directory}/setup_files/themes/*.zip`; \
+                        ${wordpress::app_directory}/setup_files/themes/*.zip`; \
                         do unzip -o \
                         \$themeindex -d \
-                        ${app_directory}/wp-content/themes/; done\'",
+                        ${wordpress::app_directory}/wp-content/themes/; done\'",
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'],
         refreshonly  => true,
         require      => Package['unzip'],
         subscribe    => File['wordpress_themes'];
       'wordpress_extract_plugins':
         command      => "/bin/sh -c \'for pluginindex in `ls \
-                        ${app_directory}/setup_files/plugins/*.zip`; \
+                        ${wordpress::app_directory}/setup_files/plugins/*.zip`; \
                         do unzip -o \
                         \$pluginindex -d \
-                        ${app_directory}/wp-content/plugins/; done\'",
+                        ${wordpress::app_directory}/wp-content/plugins/; done\'",
         path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'],
         refreshonly  => true,
         require      => Package['unzip'],
