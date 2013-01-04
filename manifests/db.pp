@@ -1,4 +1,5 @@
 class wordpress::db {
+  include wordpress
 
   $mysqlserver = $::operatingsystem ? {
     Ubuntu   => mysql-server,

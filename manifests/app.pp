@@ -1,4 +1,5 @@
 class wordpress::app {
+  include wordpress
 
   #$wordpress_archive = 'wordpress-3.4.1.zip'
   $wordpress_archive = 'wordpress-3.5.zip'
