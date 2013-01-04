@@ -44,6 +44,9 @@ class wordpress::app {
   }
 
   file {
+    '000-default':
+      ensure => absent,
+      target => '/etc/apache2/sites-enabled/000-default';
     'wordpress_application_dir':
       ensure  =>  directory,
       path    =>  "${wordpress::app_directory}",

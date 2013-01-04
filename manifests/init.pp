@@ -19,7 +19,7 @@ class wordpress(
                 $wordpress_db_server = 'localhost',
                 $wordpress_app_directory = '/opt/wordpress',
                 $wordpress_app_server_name = 'blog1.d.druidly.com',
-                $wordpress_app_server_alias = 'blog1'
+                $wordpress_app_server_alias = 'blog'
                 )
 {
   $db_name = $wordpress_db_name
