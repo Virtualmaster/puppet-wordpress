@@ -30,6 +30,6 @@ class wordpress(
   $app_server_name = $wordpress_app_server_name
   $app_server_alias = $wordpress_app_server_alias
 
-  include wordpress::app
+  #include wordpress::app
   #include wordpress::db
 }
