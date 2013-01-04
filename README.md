@@ -4,12 +4,12 @@ Ready to use with foreman
 
 DONT FORGET PARAMETRS!!!
 
-application server
+parameters for application server
 
         * wordpress_db_password (well as the database server)
         * wordpress_db_server (ip address or domain name of database server)
 
-database server
+parameters for database server
 
         * wordpress_db_password (as well as the application server)
         * wordpress_app_ip (ip address of application server)
