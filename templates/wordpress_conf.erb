@@ -1,8 +1,8 @@
 <VirtualHost *:80>
-  	DocumentRoot "<%= @app_directory %>"
-    ServerName <%= @app_server_name %>
-    Redirect /<%= @app_server_alias %> http://<%= @app_server_name %>
-    Redirect /<%= @app_server_alias %>/ http://<%= @app_server_name %>
+  	DocumentRoot "<%= scope.lookupvar('wordpress::app_directory') %>"
+    ServerName <%= scope.lookupvar('wordpress::app_server_name') %>
+    Redirect /<%= scope.lookupvar('wordpress::app_server_alias') %> http://<%= scope.lookupvar('wordpress::app_server_name') %>
+    Redirect /<%= scope.lookupvar('wordpress::app_server_alias') %>/ http://<%= scope.lookupvar('wordpress::app_server_name') %>
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride FileInfo
