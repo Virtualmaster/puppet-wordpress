@@ -46,7 +46,7 @@ class wordpress::app {
   file {
     'wordpress_application_dir':
       ensure  =>  directory,
-      path    =>  $app_directory,
+      path    =>  "${app_directory}",
       before  =>  File['wordpress_setup_files_dir'];
     'wordpress_setup_files_dir':
       ensure  =>  directory,
