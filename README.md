@@ -1,15 +1,15 @@
 ### My comments:
 
-Ready to use with foreman
+Ready to use with foreman - application and database server separated!
 
 DONT FORGET PARAMETRS!!!
 
-parameters for application server
+foreman parameters for application server
 
         * wordpress_db_password (well as the database server)
         * wordpress_db_server (ip address or domain name of database server)
 
-parameters for database server
+foreman parameters for database server
 
         * wordpress_db_password (as well as the application server)
         * wordpress_app_ip (ip address of application server)
