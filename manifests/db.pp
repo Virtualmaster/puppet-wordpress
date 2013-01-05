@@ -1,4 +1,5 @@
 class wordpress::db {
+  include wordpress
 
   $mysqlserver = $::operatingsystem ? {
     Ubuntu   => mysql-server,
@@ -30,10 +31,15 @@ class wordpress::db {
     require     => Package[ $mysqlserver, $mysqlclient ],
   }
 
+  file { [ '/opt/wordpress', '/opt/wordpress/setup_files' ]:
+    ensure => directory,
+  }
+
   file { 'wordpress_sql_script':
     ensure   => file,
     path     => '/opt/wordpress/setup_files/create_wordpress_db.sql',
-    content  => template('wordpress/create_wordpress_db.erb');
+    content  => template('wordpress/create_wordpress_db.erb'),
+    require  => File[['/opt/wordpress', '/opt/wordpress/setup_files']];
   }
 
   exec {
@@ -51,11 +57,11 @@ class wordpress::db {
       path         => '/usr/bin:/usr/sbin:/bin',
       command      => "mysql -uroot -e \"grant all privileges on\
                       ${wordpress::db_name}.* to\
-                      '${wordpress::db_user}'@'localhost'\
+                      '${wordpress::db_user}'@'${wordpress::app_ip}'\
                       identified by '${wordpress::db_password}'\"",
       unless       => "mysql -u${wordpress::db_user}\
                       -p${wordpress::db_password}\
-                      -D${wordpress::db_name} -hlocalhost",
+                      -D${wordpress::db_name} -h${wordpress::app_ip}",
       refreshonly  => true;
   }
 }
